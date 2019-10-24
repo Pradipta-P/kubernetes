@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:                            # metadat for replicaset
+  name: myapp-deployment
+  labels:
+    app: myapp
+    type: front-end
+    env: prod
+
+spec:                               # specification for replicaset
+ template:
+    metadata:                       # metadata for template
+      name: myapp-pod
+      labels:
+        app: myapp
+        type: front-end
+    spec:                          # specification for template
+     containers:
+      - name: ngin-container
+        image: nginx
+ replicas: 3                     # number of replica has to be create under this replicaset
+ selector:                 # describe to select and monitor the filtered pods. It can be created by this replicaset or not
+    matchLabels:
+     type: front-end
