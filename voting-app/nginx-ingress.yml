@@ -22,7 +22,7 @@ spec:
           - name: POD_NAME
             valueFrom:
              fieldRef:
-              fieldPath: metada.name
+              fieldPath: metadata.name
           - name: POD_NAMESPACE
             valueFrom:
              fieldRef:
