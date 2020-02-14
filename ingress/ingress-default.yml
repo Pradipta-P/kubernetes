@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  namespace: default
+spec:
+  rules:
+  - host: demo.pradipta.tech
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: myapp-service
+          servicePort: 80
+  - host: test.pradipta.tech
+    http:
+      paths:
+      - path: /webapp
+        backend:
+          serviceName: test-service
+          servicePort: 8080
