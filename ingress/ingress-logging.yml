@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: demo-ingress
+  namespace: kube-system
+spec:
+  rules:
+  - host: kibana.pradipta.tech
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: kibana-logging
+          servicePort: 5601
+  - host: es.pradipta.tech
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: elasticsearch-logging
+          servicePort: 9200

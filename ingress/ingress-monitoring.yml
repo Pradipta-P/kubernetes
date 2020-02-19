@@ -1,0 +1,28 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: monitoring-ingress
+  namespace: monitoring
+spec:
+  rules:
+  - host: grafana.pradipta.tech
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: monitoring-grafana
+          servicePort: 80
+  - host: prometheus.pradipta.tech
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: monitoring-prometheus-oper-prometheus
+          servicePort: 9090
+  - host: alertmanager.pradipta.tech
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: alertmanager-operated
+          servicePort: 9093

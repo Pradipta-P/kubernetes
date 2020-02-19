@@ -1,0 +1,16 @@
+global:
+  slack_api_url: 'https://hooks.slack.com/services/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'
+route:
+  group_by: ['alertname']          # It will group the alerts which has the same name        
+  group_wait: 5s                   # It will wait for 5 second before sending the notificstion. It will help for these alerts which will auto resolved
+  group_interval: 1m               # It will send one notification per minute for this group
+  repeat_interval: 10m             # It will repeart the alert in every one hour(alerts which are not resolved)
+  receiver: 'slack'
+
+receivers:
+- name: 'slack'
+  slack_configs:
+  - channel: '#alerts'             
+    icon_emoji: ':bell:'
+    send_resolved: true           # It will send a notification when a alert got resolved.
+    text: "<!channel> \nsummary: {{ .CommonAnnotations.message }}\n"
